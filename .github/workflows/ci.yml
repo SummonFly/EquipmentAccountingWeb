@@ -33,7 +33,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run migrations
-        run: python manage.py migrate
+        run: python Equipment_accounting_system/manage.py migrate  # Правильный путь к manage.py
 
       - name: Run tests
-        run: python manage.py test
+        run: python Equipment_accounting_system/manage.py test  # Правильный путь к manage.py
