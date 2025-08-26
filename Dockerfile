@@ -21,6 +21,6 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 8000
 
 # Команда запуска
-CMD ["gunicorn", "Equipment_accounting_system.wsgi:application",
+CMD ["gunicorn", "Equipment_accounting_system/Equipment_accounting_system.wsgi:app",
      "--bind", "0.0.0.0:8000",
      "--workers", "3"]
