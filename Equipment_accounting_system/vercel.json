@@ -1,0 +1,13 @@
+{
+    "builds": [{
+        "src": "Equipment_accounting_system/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
+    }],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "Equipment_accounting_system/wsgi.py"
+        }
+    ]
+}
