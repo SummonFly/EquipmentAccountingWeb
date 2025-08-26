@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    container_name: equipmentaccountingweb-web
+    restart: unless-stopped
+    command: python Equipment_accounting_system/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./Equipment_accounting_system:/app/Equipment_accounting_system:ro   # опционально, для hot‑reload в dev
+    ports:
+      - "8000:8000"
+    environment:
+      PYTHONDONTWRITEBYTECODE: 1
+      PYTHONUNBUFFERED: 1
