@@ -1,4 +1,19 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "routes": [{ "src": "/(.*)", "dest": "/" }]
+  "builds": [
+    {
+      "src": "Equipment_accounting_system/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "Equipment_accounting_system/wsgi.py"
+    }
+  ]
 }
