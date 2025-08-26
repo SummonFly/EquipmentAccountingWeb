@@ -8,12 +8,15 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-# Копируем только нужные файлы
+# Копируем только нужные файлы и ставим зависимости
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Копируем весь проект
-COPY Equipment_accounting_system ./Equipment_accounting_system
+# Копируем весь проект (папка Equipment_accounting_system уже внутри WORKDIR)
+COPY . .
 
-# Указываем точку входа (можно оставить в compose)
-CMD ["python", "Equipment_accounting_system/manage.py", "runserver", "0.0.0.0:8000"]
+# 1. Выполняем миграции
+RUN python Equipment_accounting_system/manage.py migrate --noinput
+
+# 2. Запускаем сервер
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
